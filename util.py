@@ -10,10 +10,10 @@ class BaseEvaluator:
         """
         pass
 
-    def evaluate(self, solution):
+    def evaluate(self, solution: Solution) -> int:
         """
         function which evaluates a given solution
-        :param solution:
+        :param solution: Solution to evaluate
         :return: score for solution
         """
         pass
@@ -32,7 +32,7 @@ class Solution(BaseSolution):
     def set_indices(self, indices: np.ndarray):
         self.indices = indices
 
-    def output(self, file_name):
+    def output(self, file_name:str):
         os.makedirs(os.path.dirname(file_name), exist_ok=True)
         with open(file_name, "w") as file:
             file.write(str(len(self.indices)) + "\n")

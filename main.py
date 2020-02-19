@@ -7,6 +7,11 @@ import copy
 
 
 def complete_solution(s: Solution, e: Evaluator):
+    """
+    :param s: An instance of the Solution class, to be completed
+    :param e: An instance of the Evaluator class, used to complete the Solution (s)
+    :returns: Tuple[Solution, Bool(was the solution updated?)]
+    """
     s_score = e.evaluate(s)
     slices_needed = np.abs(s_score)
     available_indices = [ind for ind in (set(range(e.n_pizzas)) - set(s.indices.tolist())) if e.sizes[ind] <= slices_needed]
@@ -24,7 +29,13 @@ def complete_solution(s: Solution, e: Evaluator):
     return new_solution, True
 
 
-def find_solutions(file_path, task_name, max_sec=5):
+def find_solutions(file_path:str, task_name:str, max_sec:int=5):
+    """
+    :param file_path: path to input data (should be like problem/inputs/<file>)
+    :param task_name: name of task to run. Results will be output in directory `submissions/<task_name>`
+    :param max_sex: max seconds until this function stops
+    :return: Nothing
+    """
     begin = time.time()
     # Init evaluator
     evaluator = Evaluator(file_path)
